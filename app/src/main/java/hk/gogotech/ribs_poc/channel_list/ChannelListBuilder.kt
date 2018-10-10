@@ -1,4 +1,4 @@
-package hk.gogotech.ribs_poc.logged_out
+package hk.gogotech.ribs_poc.channel_list
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -14,26 +14,24 @@ import javax.inject.Scope
 import dagger.Binds
 import dagger.BindsInstance
 import dagger.Provides
-import dagger.android.ContributesAndroidInjector
 import hk.gogotech.ribs_poc.R
 
 import java.lang.annotation.RetentionPolicy.CLASS
-import javax.inject.Inject
 
 /**
  * Builder for the [LoggedOutScope].
  */
-class LoggedOutBuilder(dependency: ParentComponent) : ViewBuilder<LoggedOutView, LoggedOutRouter, LoggedOutBuilder.ParentComponent>(dependency) {
+class ChannelListBuilder(dependency: ParentComponent) : ViewBuilder<ChannelListView, ChannelListRouter, ChannelListBuilder.ParentComponent>(dependency) {
 
     /**
-     * Builds a new [LoggedOutRouter].
+     * Builds a new [ChannelListRouter].
      *
      * @param parentViewGroup parent view group that this router's view will be added to.
-     * @return a new [LoggedOutRouter].
+     * @return a new [ChannelListRouter].
      */
-    fun build(parentViewGroup: ViewGroup): LoggedOutRouter {
+    fun build(parentViewGroup: ViewGroup): ChannelListRouter {
         val view = createView(parentViewGroup)
-        val interactor = LoggedOutInteractor()
+        val interactor = ChannelListInteractor()
         val component = DaggerLoggedOutBuilder_Component.builder()
                 .parentComponent(dependency)
                 .view(view)
@@ -42,19 +40,19 @@ class LoggedOutBuilder(dependency: ParentComponent) : ViewBuilder<LoggedOutView,
         return component.loggedoutRouter()
     }
 
-    override fun inflateView(inflater: LayoutInflater, parentViewGroup: ViewGroup): LoggedOutView {
-        return inflater.inflate(R.layout.logged_out_rib, parentViewGroup, false) as LoggedOutView
+    override fun inflateView(inflater: LayoutInflater, parentViewGroup: ViewGroup): ChannelListView {
+        return inflater.inflate(R.layout.logged_out_rib, parentViewGroup, false) as ChannelListView
     }
 
     interface ParentComponent {
-        fun listener(): LoggedOutInteractor.Listener
+        fun listener(): ChannelListInteractor.Listener
     }
 
     @dagger.Module
     abstract class Module {
         @LoggedOutScope
         @Binds
-        internal abstract fun presenter(view: LoggedOutView): LoggedOutInteractor.LoggedOutPresenter
+        internal abstract fun presenter(view: ChannelListView): ChannelListInteractor.LoggedOutPresenter
         @dagger.Module
         companion object {
             @LoggedOutScope
@@ -62,9 +60,9 @@ class LoggedOutBuilder(dependency: ParentComponent) : ViewBuilder<LoggedOutView,
             @Provides
             internal fun router(
                     component: Component,
-                    view: LoggedOutView,
-                    interactor: LoggedOutInteractor): LoggedOutRouter {
-                return LoggedOutRouter(view, interactor, component)
+                    view: ChannelListView,
+                    interactor: ChannelListInteractor): ChannelListRouter {
+                return ChannelListRouter(view, interactor, component)
             }
         }
         // TODO: Create provider methods for dependencies created by this Rib. These should be static.
@@ -72,16 +70,16 @@ class LoggedOutBuilder(dependency: ParentComponent) : ViewBuilder<LoggedOutView,
 
     @LoggedOutScope
     @dagger.Component(modules = arrayOf(Module::class), dependencies = arrayOf(ParentComponent::class))
-    interface Component : InteractorBaseComponent<LoggedOutInteractor>, BuilderComponent/*, InteractorBaseComponent*/ {
+    interface Component : InteractorBaseComponent<ChannelListInteractor>, BuilderComponent/*, InteractorBaseComponent*/ {
 
         @dagger.Component.Builder
         interface Builder {
 
             @BindsInstance
-            fun interactor(interactor: LoggedOutInteractor): Builder
+            fun interactor(interactor: ChannelListInteractor): Builder
 
             @BindsInstance
-            fun view(view: LoggedOutView): Builder
+            fun view(view: ChannelListView): Builder
 
             fun parentComponent(component: ParentComponent): Builder
 
@@ -90,7 +88,7 @@ class LoggedOutBuilder(dependency: ParentComponent) : ViewBuilder<LoggedOutView,
     }
 
     interface BuilderComponent {
-        fun loggedoutRouter(): LoggedOutRouter
+        fun loggedoutRouter(): ChannelListRouter
     }
 
     @Scope

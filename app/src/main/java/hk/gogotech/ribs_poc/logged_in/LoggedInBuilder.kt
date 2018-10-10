@@ -13,7 +13,6 @@ import dagger.BindsInstance
 import dagger.Provides
 import hk.gogotech.ribs_poc.logged_in.off_game.OffGameBuilder
 import hk.gogotech.ribs_poc.logged_in.off_game.OffGameInteractor
-import hk.gogotech.ribs_poc.logged_in.tic_tae_toe.TicTacToeBuilder
 import hk.gogotech.ribs_poc.root.RootView
 
 import java.lang.annotation.RetentionPolicy.CLASS
@@ -53,8 +52,7 @@ class LoggedInBuilder(dependency: ParentComponent) : Builder<LoggedInRouter, Log
                     interactor,
                     component,
                     rootView,
-                    OffGameBuilder(component),
-                    TicTacToeBuilder(component))
+                    OffGameBuilder(component))
         }
 
         @LoggedInScope
@@ -68,7 +66,7 @@ class LoggedInBuilder(dependency: ParentComponent) : Builder<LoggedInRouter, Log
 
     @LoggedInScope
     @dagger.Component(modules = arrayOf(Module::class), dependencies = arrayOf(ParentComponent::class))
-    interface Component : InteractorBaseComponent<LoggedInInteractor>, BuilderComponent, OffGameBuilder.ParentComponent, TicTacToeBuilder.ParentComponent {
+    interface Component : InteractorBaseComponent<LoggedInInteractor>, BuilderComponent, OffGameBuilder.ParentComponent {
         @dagger.Component.Builder
         interface Builder {
             @BindsInstance

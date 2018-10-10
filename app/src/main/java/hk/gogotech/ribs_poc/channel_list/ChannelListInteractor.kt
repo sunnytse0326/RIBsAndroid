@@ -1,6 +1,5 @@
-package hk.gogotech.ribs_poc.logged_out
+package hk.gogotech.ribs_poc.channel_list
 
-import android.util.Log
 import android.util.Pair
 import com.uber.rib.core.Bundle
 import com.uber.rib.core.Interactor
@@ -11,10 +10,10 @@ import io.reactivex.Observable
 import io.reactivex.annotations.Nullable
 
 /**
- * Coordinates Business Logic for [LoggedOutBuilder.LoggedOutScope].
+ * Coordinates Business Logic for [ChannelListBuilder.LoggedOutScope].
  */
 @RibInteractor
-class LoggedOutInteractor : Interactor<LoggedOutInteractor.LoggedOutPresenter, LoggedOutRouter>() {
+class ChannelListInteractor : Interactor<ChannelListInteractor.LoggedOutPresenter, ChannelListRouter>() {
     @Inject
     lateinit var listener: Listener
 

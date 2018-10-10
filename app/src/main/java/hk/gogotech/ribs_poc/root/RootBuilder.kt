@@ -10,8 +10,8 @@ import dagger.Provides
 import hk.gogotech.ribs_poc.R
 
 import hk.gogotech.ribs_poc.logged_in.LoggedInBuilder
-import hk.gogotech.ribs_poc.logged_out.LoggedOutBuilder
-import hk.gogotech.ribs_poc.logged_out.LoggedOutInteractor
+import hk.gogotech.ribs_poc.channel_list.ChannelListBuilder
+import hk.gogotech.ribs_poc.channel_list.ChannelListInteractor
 import java.lang.annotation.Retention
 import javax.inject.Scope
 import java.lang.annotation.RetentionPolicy.CLASS
@@ -45,7 +45,7 @@ class RootBuilder(dependency: ParentComponent) : ViewBuilder<RootView, RootRoute
             @JvmStatic
             @Provides
             @RootScope
-            internal fun loggedOutListener(rootInteractor: RootInteractor): LoggedOutInteractor.Listener {
+            internal fun loggedOutListener(rootInteractor: RootInteractor): ChannelListInteractor.Listener {
                 return rootInteractor.LoggedOutListener()
             }
             @JvmStatic
@@ -56,7 +56,7 @@ class RootBuilder(dependency: ParentComponent) : ViewBuilder<RootView, RootRoute
                         view,
                         interactor,
                         component,
-                        LoggedOutBuilder(component),
+                        ChannelListBuilder(component),
                         LoggedInBuilder(component))
             }
         }
@@ -64,7 +64,7 @@ class RootBuilder(dependency: ParentComponent) : ViewBuilder<RootView, RootRoute
 
     @RootScope
     @dagger.Component(modules = arrayOf(Module::class), dependencies = arrayOf(ParentComponent::class))
-    interface Component : InteractorBaseComponent<RootInteractor>, LoggedOutBuilder.ParentComponent, LoggedInBuilder.ParentComponent, BuilderComponent {
+    interface Component : InteractorBaseComponent<RootInteractor>, ChannelListBuilder.ParentComponent, LoggedInBuilder.ParentComponent, BuilderComponent {
 
         @dagger.Component.Builder
         interface Builder {

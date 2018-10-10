@@ -22,7 +22,6 @@ class LoggedInInteractor : Interactor<EmptyPresenter, LoggedInRouter>() {
     inner class OffGameListener : OffGameInteractor.Listener {
         override fun onStartGame() {
             router.detachOffGame()
-            router.attachTicTacToe()
         }
     }
 }
