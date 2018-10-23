@@ -1,4 +1,4 @@
-package hk.gogotech.ribs_poc.root
+package hk.gogotech.ribs_poc.ribstree.root
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -9,13 +9,12 @@ import dagger.BindsInstance
 import dagger.Provides
 import hk.gogotech.ribs_poc.R
 
-import hk.gogotech.ribs_poc.logged_in.LoggedInBuilder
-import hk.gogotech.ribs_poc.channel_list.ChannelListBuilder
-import hk.gogotech.ribs_poc.channel_list.ChannelListInteractor
+import hk.gogotech.ribs_poc.ribstree.logged_in.LoggedInBuilder
+import hk.gogotech.ribs_poc.storage.LocalStorage
 import java.lang.annotation.Retention
 import javax.inject.Scope
 import java.lang.annotation.RetentionPolicy.CLASS
-
+import javax.inject.Named
 
 class RootBuilder(dependency: ParentComponent) : ViewBuilder<RootView, RootRouter, RootBuilder.ParentComponent>(dependency) {
     fun build(parentViewGroup: ViewGroup): RootRouter {
@@ -33,21 +32,19 @@ class RootBuilder(dependency: ParentComponent) : ViewBuilder<RootView, RootRoute
         return inflater.inflate(R.layout.root_rib, parentViewGroup, false) as RootView
     }
 
-    interface ParentComponent// Define dependencies required from your parent interactor here.
+    interface ParentComponent {
+        @Named("local_memory")
+        fun localMemory(): LocalStorage
+    }
 
     @dagger.Module
     abstract class Module {
         @RootScope
         @Binds
         internal abstract fun presenter(view: RootView): RootInteractor.RootPresenter
+
         @dagger.Module
         companion object {
-            @JvmStatic
-            @Provides
-            @RootScope
-            internal fun loggedOutListener(rootInteractor: RootInteractor): ChannelListInteractor.Listener {
-                return rootInteractor.LoggedOutListener()
-            }
             @JvmStatic
             @Provides
             @RootScope
@@ -56,19 +53,25 @@ class RootBuilder(dependency: ParentComponent) : ViewBuilder<RootView, RootRoute
                         view,
                         interactor,
                         component,
-                        ChannelListBuilder(component),
-                        LoggedInBuilder(component))
+                        LoggedInBuilder(object : LoggedInBuilder.ParentComponent {
+                            override fun rootView(): RootView {
+                                return view
+                            }
+
+                            override fun localMemory(): LocalStorage {
+                                return interactor.localMemory!!
+                            }
+                        }))
             }
         }
     }
 
     @RootScope
     @dagger.Component(modules = arrayOf(Module::class), dependencies = arrayOf(ParentComponent::class))
-    interface Component : InteractorBaseComponent<RootInteractor>, ChannelListBuilder.ParentComponent, LoggedInBuilder.ParentComponent, BuilderComponent {
+    interface Component : InteractorBaseComponent<RootInteractor>, BuilderComponent, LoggedInBuilder.ParentComponent {
 
         @dagger.Component.Builder
         interface Builder {
-
             @BindsInstance
             fun interactor(interactor: RootInteractor): Builder
 
@@ -82,7 +85,6 @@ class RootBuilder(dependency: ParentComponent) : ViewBuilder<RootView, RootRoute
     }
 
     interface BuilderComponent {
-
         fun rootRouter(): RootRouter
     }
 

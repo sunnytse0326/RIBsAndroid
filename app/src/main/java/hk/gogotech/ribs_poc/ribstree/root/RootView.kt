@@ -1,4 +1,4 @@
-package hk.gogotech.ribs_poc.root
+package hk.gogotech.ribs_poc.ribstree.root
 
 import android.content.Context
 import android.util.AttributeSet
