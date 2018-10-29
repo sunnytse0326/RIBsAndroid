@@ -76,6 +76,7 @@
                 android:layout_weight="1"
                 android:clipToPadding="false"
                 android:paddingBottom="4dp"
+                android:paddingTop="5dp"
                 android:scrollbars="vertical"></android.support.v7.widget.RecyclerView>
 
             <LinearLayout

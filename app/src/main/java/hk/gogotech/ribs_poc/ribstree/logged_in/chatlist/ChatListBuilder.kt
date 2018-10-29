@@ -65,7 +65,7 @@ class ChatListBuilder(dependency: ParentComponent) : ViewBuilder<ChatListView, C
                     interactor: ChatListInteractor, rootView: RootView): ChatListRouter {
                 return ChatListRouter(view, interactor, component, rootView, TypeHintBuilder(object : TypeHintBuilder.ParentComponent {
                     override fun userName(): String {
-                        return "WTF is going on "
+                        return ""
                     }
                 }))
             }

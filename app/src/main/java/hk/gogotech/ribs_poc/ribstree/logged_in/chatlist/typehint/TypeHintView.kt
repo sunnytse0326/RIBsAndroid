@@ -29,6 +29,4 @@ class TypeHintView @JvmOverloads constructor(context: Context, attrs: AttributeS
 
         hintMessage.translationY = -dip(40).toFloat()
     }
-
-
 }

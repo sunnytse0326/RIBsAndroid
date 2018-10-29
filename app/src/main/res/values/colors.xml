@@ -11,4 +11,7 @@
 
     <color name="colorBtnSend">#774df2</color>
     <color name="colorBtnSendDisabled">#8e8e8e</color>
+
+    <color name="colorLightBlue">#e0fcff</color>
+    <color name="colorGreen">#1fcc94</color>
 </resources>

@@ -12,5 +12,9 @@
     <string name="is_typing">%s is typing...</string>
 
     <string name="appbar_scrolling_view_behavior" translatable="false">android.support.design.widget.AppBarLayout$ScrollingViewBehavior</string>
+    <string name="group_channel_list_file_message_text">%1$s has uploaded a file.</string>
+
+    <string name="message_sending">Sending</string>
+    <string name="message_failed">Failed</string>
 
 </resources>
