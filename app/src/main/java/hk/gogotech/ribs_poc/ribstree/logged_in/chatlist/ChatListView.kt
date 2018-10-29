@@ -6,12 +6,23 @@ import android.widget.RelativeLayout
 import com.jakewharton.rxbinding2.InitialValueObservable
 import com.jakewharton.rxbinding2.view.RxView
 import com.jakewharton.rxbinding2.widget.RxTextView
+import com.jakewharton.rxbinding2.widget.TextViewEditorActionEvent
+import com.jakewharton.rxbinding2.widget.TextViewTextChangeEvent
+import io.reactivex.Observable
 import kotlinx.android.synthetic.main.chatlist_rib.view.*
 import java.util.*
 
 class ChatListView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyle: Int = 0) : RelativeLayout(context, attrs, defStyle), ChatListInteractor.ChatListPresenter {
-    override fun getTextFromEditText(): InitialValueObservable<CharSequence> {
+    override fun monitorTextFromEditText(): InitialValueObservable<CharSequence> {
         return RxTextView.textChanges(edittext_chat_message)
+    }
+
+    override fun getTextFromSendBtn(): Observable<*> {
+        return RxView.clicks(button_open_channel_chat_send)
+    }
+
+    override fun getTextFromEditText(): Observable<TextViewEditorActionEvent> {
+        return RxTextView.editorActionEvents(edittext_chat_message)
     }
 
     override fun displayErrMsg(msg: String) {
@@ -22,5 +33,11 @@ class ChatListView @JvmOverloads constructor(context: Context, attrs: AttributeS
         channel_list_progress_lty.visibility = visibility
     }
 
+    override fun getEditTextContent(): String {
+        return edittext_chat_message.text.toString()
+    }
 
+    override fun setSendBtnEnable(enable: Boolean){
+        button_open_channel_chat_send.isEnabled = enable
+    }
 }

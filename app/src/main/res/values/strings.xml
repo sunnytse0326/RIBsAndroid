@@ -8,7 +8,8 @@
     <string name="win_count">win count</string>
 
     <string name="unknown_err">Unknown Error</string>
-    <string name="enter_message">Enter message</string>
+    <string name="enter_message">Enter message</string>\
+    <string name="is_typing">%s is typing...</string>
 
     <string name="appbar_scrolling_view_behavior" translatable="false">android.support.design.widget.AppBarLayout$ScrollingViewBehavior</string>
 

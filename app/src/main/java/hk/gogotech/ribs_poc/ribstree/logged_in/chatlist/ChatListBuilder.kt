@@ -10,6 +10,8 @@ import dagger.Binds
 import dagger.BindsInstance
 import dagger.Provides
 import hk.gogotech.ribs_poc.R
+import hk.gogotech.ribs_poc.ribstree.logged_in.chatlist.typehint.TypeHintBuilder
+import hk.gogotech.ribs_poc.ribstree.root.RootView
 import hk.gogotech.ribs_poc.storage.LocalStorage
 import java.lang.annotation.Retention
 import java.lang.annotation.RetentionPolicy.CLASS
@@ -30,7 +32,7 @@ class ChatListBuilder(dependency: ParentComponent) : ViewBuilder<ChatListView, C
         return component.chatlistRouter()
     }
 
-    fun updateSendBirdUserResult(result: Pair<Boolean, Pair<User, SendBirdException>>){
+    fun updateSendBirdUserResult(result: Pair<Boolean, Pair<User, SendBirdException>>) {
         interactor.updateSendBirdUserResult(result)
     }
 
@@ -41,6 +43,7 @@ class ChatListBuilder(dependency: ParentComponent) : ViewBuilder<ChatListView, C
     interface ParentComponent {
         @Named("local_memory")
         fun localMemory(): LocalStorage
+        fun rootView(): RootView
     }
 
     @dagger.Module
@@ -59,8 +62,12 @@ class ChatListBuilder(dependency: ParentComponent) : ViewBuilder<ChatListView, C
             internal fun router(
                     component: Component,
                     view: ChatListView,
-                    interactor: ChatListInteractor): ChatListRouter {
-                return ChatListRouter(view, interactor, component)
+                    interactor: ChatListInteractor, rootView: RootView): ChatListRouter {
+                return ChatListRouter(view, interactor, component, rootView, TypeHintBuilder(object : TypeHintBuilder.ParentComponent {
+                    override fun userName(): String {
+                        return "WTF is going on "
+                    }
+                }))
             }
         }
     }

@@ -37,11 +37,12 @@
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
                 android:layout_weight="1"
-                android:textColor="@color/colorText"
-                android:textColorHint="@color/colorBtnSendDisabled"
                 android:background="@android:color/transparent"
                 android:hint="@string/enter_message"
-                android:maxLines="6" />
+                android:maxLines="6"
+                android:singleLine="true"
+                android:textColor="@color/colorText"
+                android:textColorHint="@color/colorBtnSendDisabled" />
 
             <Button
                 android:id="@+id/button_open_channel_chat_send"

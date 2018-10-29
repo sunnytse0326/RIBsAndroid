@@ -49,6 +49,9 @@ class LoggedInBuilder(dependency: ParentComponent) : Builder<LoggedInRouter, Log
             @JvmStatic
             internal fun router(component: Component, interactor: LoggedInInteractor, rootView: RootView): LoggedInRouter {
                 return LoggedInRouter(interactor, component, rootView, ChatListBuilder(object: ChatListBuilder.ParentComponent{
+                    override fun rootView(): RootView {
+                        return rootView
+                    }
                     override fun localMemory(): LocalStorage {
                         return interactor.localMemory!!
                     }
