@@ -8,6 +8,9 @@ import hk.gogotech.ribs_poc.BaseApplication
 import hk.gogotech.ribs_poc.R
 import hk.gogotech.ribs_poc.ribstree.logged_in.chatlist.typehint.TypeHintBuilder
 import hk.gogotech.ribs_poc.ribstree.logged_in.chatlist.typehint.TypeHintRouter
+import org.jetbrains.anko.runOnUiThread
+import java.util.*
+import kotlin.concurrent.schedule
 
 /**
  * Adds and removes children of {@link ChatListBuilder.ChatListScope}.
@@ -26,6 +29,10 @@ class ChatListRouter(
         typeHintRouter = typeHintBuilder.build(parentView)
         attachChild(typeHintRouter)
         parentView.addView(typeHintRouter?.view)
+    }
+
+    fun bringTypeViewToFront(){
+        typeHintRouter?.view?.context?.runOnUiThread{typeHintRouter?.view?.bringToFront()}
     }
 
     fun setTypeTextContext(text: String) {

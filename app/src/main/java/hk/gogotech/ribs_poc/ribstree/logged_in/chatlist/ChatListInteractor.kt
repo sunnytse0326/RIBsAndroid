@@ -58,8 +58,8 @@ class ChatListInteractor : Interactor<ChatListInteractor.ChatListPresenter, Chat
         super.didBecomeActive(savedInstanceState)
         initData()
         monitorInputMessageAction()
-        attachTypeView()
         initAdapter()
+        attachTypeView()
     }
 
     private fun initData(){
@@ -174,6 +174,7 @@ class ChatListInteractor : Interactor<ChatListInteractor.ChatListPresenter, Chat
     private fun fetchMessages() {
         validChannel?.createPreviousMessageListQuery()?.load(CHANNEL_LIST_LIMIT, false) { list, err ->
             adapter?.updateList(list)
+            router.bringTypeViewToFront()
             presenter.setLoadingVisibility(View.GONE)
             presenter.getRecyclerView().scrollToPosition(list.size - 1)
         }
