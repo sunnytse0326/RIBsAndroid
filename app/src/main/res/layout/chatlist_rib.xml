@@ -78,22 +78,6 @@
                 android:paddingBottom="4dp"
                 android:paddingTop="5dp"
                 android:scrollbars="vertical"></android.support.v7.widget.RecyclerView>
-
-            <LinearLayout
-                android:id="@+id/layout_open_chat_current_event"
-                android:layout_width="match_parent"
-                android:layout_height="36dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:visibility="gone">
-
-                <TextView
-                    android:id="@+id/text_open_chat_current_event"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:text="Sunny is typing..." />
-            </LinearLayout>
         </LinearLayout>
     </RelativeLayout>
 
