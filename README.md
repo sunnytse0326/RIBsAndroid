@@ -9,7 +9,7 @@ In the project, we buit several RIBs components to seperate the jobs and divided
 <br>
 The diagram beneath shows the flow how it works in the project:
 <p float="left">
-  <img src="https://github.com/sunnytse0326/RIBsAndroid/blob/master/screenshot/structure.png" width="350" height="550">
+  <img src="https://github.com/sunnytse0326/RIBsAndroid/blob/master/screenshot/structure.png" width="563" height="408">
 </p>
 <br>
 Each RIB tree has its own functionality:
@@ -32,7 +32,7 @@ TypeText: A hint text when user is typing
 
 3. From the project, it sets two kind of build flavor for different users. Each provides a login credit and build a chat room from SendBird:
 <p float="left">
-  <img src="https://github.com/sunnytse0326/RIBsAndroid/blob/master/screenshot/screenshot1.png" width="250" height="400">
-  <img src="https://github.com/sunnytse0326/RIBsAndroid/blob/master/screenshot/screenshot2.png" width="250" height="400">
+  <img src="https://github.com/sunnytse0326/RIBsAndroid/blob/master/screenshot/screenshot1.png" width="271" height="451">
+  <img src="https://github.com/sunnytse0326/RIBsAndroid/blob/master/screenshot/screenshot2.png" width="271" height="451">
 </p>
 
