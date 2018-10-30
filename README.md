@@ -36,3 +36,6 @@ TypeText: A hint text when user is typing
   <img src="https://github.com/sunnytse0326/RIBsAndroid/blob/master/screenshot/screenshot2.png" width="271" height="451">
 </p>
 
+
+# Discussion
+An [Article](https://medium.com/@sunnytse0326/ribs-architecture-outline-mobile-architecture-3595131ed583) for discussing why and how we pick RIBs as a new architecture base.
