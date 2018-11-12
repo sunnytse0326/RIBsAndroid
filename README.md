@@ -38,4 +38,4 @@ TypeText: A hint text when user is typing
 
 
 # Discussion
-An [Article](https://medium.com/@sunnytse0326/ribs-architecture-outline-mobile-architecture-3595131ed583) for discussing why and how we pick RIBs as a new architecture base.
+An [Article](https://medium.com/@sunnytse/ribs-architecture-outline-mobile-architecture-a0931efde9b9) for discussing why and how we pick RIBs as a new architecture base.
